@@ -1,18 +1,131 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<style >
+		
+		body { background-image: url("bk4.jpg"); 
+			   /*background-color: rgba(240, 248, 255, 0.38);*/
+			   font-family: fantasy;  
+			   color:  rgb(67, 202, 73);   
+			   width: auto;
+
+		}
+
+		#body { background-color: rgba(240, 248, 255, 0.38);
+                
+
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 78px;
+			padding-top: 45px;
+		}
+
+		h2 {
+			font-size: 34px;
+			text-align: center;
+		}
+
+		.flavor {
+			width: 350px;
+			height: 300px;
+		}
+
+		.columns {
+			width: 1200px;
+			
+		}
+		
+		.column1, .column2,.column3 {
+			width: 300px;
+			float: left;
+			padding: 30px;
+			margin: 20px;
+		}
+
+		
+		.clear{
+			clear: all;
+		}
+
+	</style>
+	<title>Cookies!!</title>
 </head>
 	<body>
+		<div id="body">
+			
+			<h1> Pick Your Cookies </h1>
+
+			<div class="columns">
+				
+				<div class="column1">
+					<h2 class="cookie">Sugar Cookies</h2>
+					<img class="flavor" src="sugar.jpg">
+					<span class="count"></span>
+					<span class="clear">(clear)</span>
+				</div>
+				
+				<div class ="column2">
+					<h2 class="cookie">Chocolate Cookies</h2>
+				    <img class=" flavor" src="chocko.jpg">
+					<span class="count"></span>
+					<span class="clear">(clear)</span>
+			    </div>
+				
+				<div class="column3">
+				    <h2 class="cookie">Lemon Cookies</h2>
+				    <img class=" flavor" src="lemon.jpg">
+					<span class="count"></span>
+				    <span class="clear">(clear)</span>  
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+
 		
-		<script src="cookies.js"></script>
-		<script>
-			Cookies.set("name","Dana");
-			alert(Cookies.get("name"));
-		</script>
+		
+			<script
+				src="https://code.jquery.com/jquery-3.2.1.js"
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+				crossorigin="anonymous"></script>
+			<script src="cookies.js"></script>
 
 
+		    <script>
+		      $(document).ready(function() {
+		        $(".count").each(function() {
+		          var flavor = $(this).parent().attr("data-flavor");
 
+		          var previousCount = Cookies.get(flavor);
 
+		          $(this).html(previousCount);
+		        });
+
+		        $(".cookie").click(function() {
+		          var flavor = $(this).parent().attr("data-flavor");
+
+		          var previousCount = Cookies.get(flavor);
+		          var currentCount = 0;
+
+		          if (previousCount) {
+		            currentCount = parseInt(previousCount) + 1;
+		          } else {
+		            currentCount = 1;
+		          }
+
+		          Cookies.set(flavor, currentCount);
+		        });
+
+		        $(".clear").click(function() {
+		          var flavor = $(this).parent().attr("data-flavor");
+
+		          Cookies.set(flavor, 0);
+		        });
+		      });
+		    </script>
+
+		</div>
 	</body>
 </html>
