@@ -76,13 +76,12 @@
 				
 				<div class="column3">
 				    <h2 class="cookie">Lemon Cookies</h2>
-				    <img class=" flavor" src="lemon.jpg">
+				    <img class="flavor" src="lemon.jpg">
 					<span class="count"></span>
 				    <span class="clear">(clear)</span>  
 				</div>
-				
-				<div class="clear"></div>
 			</div>
+			<div class="clear"></div>
 
 		
 		
@@ -94,19 +93,21 @@
 
 
 		    <script>
+
+
 		      $(document).ready(function() {
 		        $(".count").each(function() {
-		          var flavor = $(this).parent().attr("data-flavor");
+		          var taste = $(this).parent().attr("flavor");
 
-		          var previousCount = Cookies.get(flavor);
+		          var previousCount = Cookies.get(taste);
 
 		          $(this).html(previousCount);
 		        });
 
-		        $(".cookie").click(function() {
-		          var flavor = $(this).parent().attr("data-flavor");
+		        $(".flavor").click(function() {
+		          var cookie = $(this).parent().attr("flavor");
 
-		          var previousCount = Cookies.get(flavor);
+		          var previousCount = Cookies.get(taste);
 		          var currentCount = 0;
 
 		          if (previousCount) {
@@ -115,13 +116,13 @@
 		            currentCount = 1;
 		          }
 
-		          Cookies.set(flavor, currentCount);
+		          Cookies.set(taste, currentCount);
 		        });
 
 		        $(".clear").click(function() {
-		          var flavor = $(this).parent().attr("data-flavor");
+		          var taste = $(this).parent().attr("flavor");
 
-		          Cookies.set(flavor, 0);
+		          Cookies.set(taste, 0);
 		        });
 		      });
 		    </script>
